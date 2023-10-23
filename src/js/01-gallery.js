@@ -4,50 +4,33 @@ import { galleryItems } from './gallery-items';
 import "simplelightbox/dist/simple-lightbox.min.css";
 // Change code below this line
 
+import '../css/common.css';
+import '../css/01-gallery.css';
 
-
-
-function createItemsMarkup(items) {
-  return items
-    .map(({ preview, original, description }) => {
-      return `
-        <a class="gallery__item" href="${original}">
-          <img
-            class="gallery__image"
-            src="${preview}"
-            alt="${description}"
-          />
-        </a>
+const createItemsMarkup = galleryItems
+  .map(({ preview, original, description }) => {
+    return `
+    <a class="gallery__item" href="${original}">
+    <img class="gallery__image" src="${preview}" alt="${description}" />
+  </a>
       `;
-    })
-    .join('');
-}
+  })
+  .join('');
 
-
-
-const galleryHTML = createItemsMarkup(galleryItems);
-
-galleryContainer.insertAdjacentHTML("beforeend", galleryHTML)
-
-
-const lightbox = new SimpleLightbox(`.gallery a`, {
-    scrollZoom: false,
-    captionDelay: 250,
-    captionData: `alt`,
-    doubleTapZoom: 1,
+const alleryContainerEl = document.querySelector('.gallery');
+alleryContainerEl.insertAdjacentHTML('beforeend', createItemsMarkup);
+let lightbox = new SimpleLightbox('.gallery a', {
+  scrollZoom: false,
+  captionDelay: 250,
+  captionsData: 'alt',
+  doubleTapZoom: 1,
+});
+alleryContainerEl.addEventListener('click', event => {
+  event.preventDefault();
+  if (!event.target.classList.contains('gallery__image')) {
+    return;
+  }
 });
 
-galleryContainer.addEventListener("click" , (event) => {
-    event.preventDefault()
-
-        if(!event.target.classList.contains('gallery__image')) {
-            return;
-        }
-})
-
-
-console.log(galleryItems);
-
-
-
+//console.log(galleryItems);
 
