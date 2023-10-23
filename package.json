@@ -2,7 +2,6 @@
   "name": "parcel-project-template",
   "version": "2.0.0",
   "description": "",
-  
   "homepage": "https://uriel-lopez-018.github.io/goit-js-hw-08",
   "scripts": {
     "start": "parcel src/*.html",
